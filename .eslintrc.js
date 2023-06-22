@@ -9,6 +9,8 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    camelcase: 'off',
+    'no-console': 'off',
     'no-param-reassign': 'off',
     'import/no-cycle': 'off',
     'react/react-in-jsx-scope': 0,
