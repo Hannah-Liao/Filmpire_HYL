@@ -9,6 +9,7 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    'react/destructuring-assignment': 'off',
     camelcase: 'off',
     'no-console': 'off',
     'no-param-reassign': 'off',
