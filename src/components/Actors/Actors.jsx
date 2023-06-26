@@ -5,14 +5,16 @@ import { useParams, useHistory } from 'react-router-dom';
 
 import useStyles from './styles';
 import { useGetActorQuery, useGetMoviesByActorIDQuery } from '../../services/TMDB';
-import { MovieList } from '..';
+import { MovieList, Pagination } from '..';
 
 const Actors = () => {
+  const [page, setPage] = useState(1);
+
   const classes = useStyles();
   const { id } = useParams();
   const history = useHistory();
   const { data, isFetching, error } = useGetActorQuery({ person_id: id });
-  const { data: movies } = useGetMoviesByActorIDQuery({ person_id: id, page: 1 });
+  const { data: movies } = useGetMoviesByActorIDQuery({ person_id: id, page });
 
   if (isFetching) {
     <Box display="flex" justifyContent="center">
@@ -56,6 +58,7 @@ const Actors = () => {
           {movies
             ? <MovieList movies={movies} numberOfMovies={12} />
             : <Box>Sorry, not thing found</Box>}
+          <Pagination currentPage={page} setPage={setPage} totalPages={movies?.total_pages} />
         </Box>
       </Grid>
     </>
