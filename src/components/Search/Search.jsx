@@ -11,6 +11,8 @@ const Search = () => {
   const classes = useStyles();
   const [query, setQuery] = useState('');
 
+  const location = useLocation();
+
   const dispatch = useDispatch();
 
   const handleKeyDown = (event) => {
@@ -18,6 +20,8 @@ const Search = () => {
       dispatch(searchMovie(query));
     }
   };
+
+  if (location.pathname !== '/') return null;
 
   return (
     <div className={classes.searchContainer}>
