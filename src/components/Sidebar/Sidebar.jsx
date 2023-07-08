@@ -8,25 +8,25 @@ import useStyles from './styles';
 import { useGetGenresQuery } from '../../services/TMDB';
 import genereIcons from '../../assets/genres';
 import { selectgenreOrCategory } from '../../features/currentGenreOrCategory';
+import redLogo from '../../assets/images/movieee-red.png';
+import blueLogo from '../../assets/images/movieee-blue.png';
 
 const Sidebar = ({ setMobileOpen }) => {
   const { data, isFetching } = useGetGenresQuery();
   const dispatch = useDispatch();
-
-  // like useContext
-  // const { genreOrCategoryName } = useSelector((state) => state.currentGenreOrCategory);
-
+  const { genreIdOrCategoryName } = useSelector((state) => state.currentGenreOrCategory);
   const theme = useTheme();
   const classes = useStyles();
-
-  const blueLogo = 'https://fontmeme.com/permalink/210930/8531c658a743debe1e1aa1a2fc82006e.png';
-  const redLogo = 'https://fontmeme.com/permalink/210930/6854ae5c7f76597cf8680e48a2c8a50a.png';
 
   const demoCategories = [
     { label: 'Popular', value: 'popular' },
     { label: 'Top Rated', value: 'top_rated' },
     { label: 'Upcoming', value: 'upcoming' },
   ];
+
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [genreIdOrCategoryName]);
 
   return (
     <>
